@@ -39,6 +39,8 @@ body{
  z-index:20;
 }
 
+/* ===== ARQUIVOS (PAPÉIS) ===== */
+
 .stack{
  position:relative;
  width:120px;
@@ -74,23 +76,53 @@ body{
  transform:rotate(12deg) translateX(10px);
 }
 
-/* FOTOS */
+/* ===== FOTOS POLAROID ===== */
 
 .photoStack{
  display:flex;
- gap:10px;
+ align-items:flex-end;
+ gap:18px;
  cursor:pointer;
 }
 
 .photo{
- width:70px;
- height:90px;
- background:white;
- box-shadow:0 8px 20px rgba(0,0,0,.6);
- transform:rotate(-6deg);
+ position:relative;
+ width:90px;
+ height:110px;
+ background:#ffffff;
+ padding:8px 8px 18px 8px;
+ box-shadow:
+ 0 15px 30px rgba(0,0,0,.7),
+ 0 5px 10px rgba(0,0,0,.4);
+ transition:.3s;
 }
-.photo:nth-child(2){ transform:rotate(8deg); }
-.photo:nth-child(3){ transform:rotate(-3deg); }
+
+/* Parte interna preta */
+.photo::after{
+ content:"";
+ position:absolute;
+ top:8px;
+ left:8px;
+ width:calc(100% - 16px);
+ height:calc(100% - 30px);
+ background:#000;
+}
+
+/* Ângulos diferentes */
+.photo:nth-child(1){ transform:rotate(-8deg); }
+.photo:nth-child(2){ transform:rotate(6deg); }
+.photo:nth-child(3){ transform:rotate(-4deg); }
+
+/* Movimento ao passar mouse */
+.photoStack:hover .photo:nth-child(1){
+ transform:rotate(-15deg) translateY(-6px);
+}
+.photoStack:hover .photo:nth-child(2){
+ transform:rotate(12deg) translateY(-8px);
+}
+.photoStack:hover .photo:nth-child(3){
+ transform:rotate(-10deg) translateY(-6px);
+}
 
 /* ===== MESA ===== */
 
@@ -240,8 +272,7 @@ h1{
 .arrowLeft{ left:-100px; }
 .arrowRight{ right:-100px; }
 
-/* ===== ÁREA DE FOTOS ===== */
-
+/* ÁREA DE FOTOS */
 #fotoArea{
  position:absolute;
  top:0;
@@ -318,7 +349,6 @@ h1{
 
 <script>
 
-/* Alternar áreas */
 function mostrarFotos(){
  document.getElementById("container").style.display="none";
  document.getElementById("tituloPrincipal").style.display="none";
@@ -331,7 +361,8 @@ function mostrarArquivos(){
  document.getElementById("fotoArea").style.display="none";
 }
 
-/* PÁGINAS */
+/* resto do seu JS original permanece igual */
+
 let paginas=[
 { titulo:"RELATÓRIO 01", texto:"Documento classificado. Informação restrita." },
 { titulo:"HISTÓRICO", texto:"Sujeito considerado altamente perigoso." },
@@ -366,7 +397,6 @@ atualizarPagina();
 }
 }
 
-/* ARQUIVOS */
 let nomes=[
 "Elizabeth","Sebastian","Caleb","Hazel",
 "Calli","Void","Abbadon","Belzebub",
