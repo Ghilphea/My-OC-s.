@@ -28,7 +28,72 @@ body{
  align-items:center;
 }
 
-/* MESA */
+/* ===== MENU SUPERIOR DIREITO ===== */
+
+.topSwitch{
+ position:fixed;
+ top:40px;
+ right:60px;
+ display:flex;
+ gap:60px;
+ z-index:20;
+}
+
+.stack{
+ position:relative;
+ width:120px;
+ height:90px;
+ cursor:pointer;
+}
+
+.stackPaper{
+ position:absolute;
+ width:120px;
+ height:90px;
+ background:#f4edd8;
+ box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+
+.stackPaper:nth-child(1){ transform:rotate(-8deg); }
+.stackPaper:nth-child(2){ transform:rotate(6deg); }
+.stackPaper:nth-child(3){
+ transform:rotate(-2deg);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:14px;
+ letter-spacing:2px;
+ font-weight:bold;
+ color:#111;
+}
+
+.stack:hover .stackPaper:nth-child(1){
+ transform:rotate(-15deg) translateX(-10px);
+}
+.stack:hover .stackPaper:nth-child(2){
+ transform:rotate(12deg) translateX(10px);
+}
+
+/* FOTOS */
+
+.photoStack{
+ display:flex;
+ gap:10px;
+ cursor:pointer;
+}
+
+.photo{
+ width:70px;
+ height:90px;
+ background:white;
+ box-shadow:0 8px 20px rgba(0,0,0,.6);
+ transform:rotate(-6deg);
+}
+.photo:nth-child(2){ transform:rotate(8deg); }
+.photo:nth-child(3){ transform:rotate(-3deg); }
+
+/* ===== MESA ===== */
+
 .table{
  position:fixed;
  bottom:0;
@@ -45,7 +110,7 @@ h1{
  font-size:28px;
 }
 
-/* CONTAINER FULL HD 6 POR LINHA */
+/* CONTAINER */
 .container{
  display:grid;
  grid-template-columns: repeat(6, 240px);
@@ -175,17 +240,36 @@ h1{
 .arrowLeft{ left:-100px; }
 .arrowRight{ right:-100px; }
 
-/* RESPONSIVIDADE BÁSICA */
-@media(max-width:1600px){
- .container{
-  grid-template-columns: repeat(4, 240px);
- }
+/* ===== ÁREA DE FOTOS ===== */
+
+#fotoArea{
+ position:absolute;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+ display:none;
+ flex-wrap:wrap;
+ justify-content:center;
+ align-items:flex-start;
+ gap:40px;
+ padding-top:160px;
 }
 
+#fotoArea img{
+ width:280px;
+ height:380px;
+ object-fit:cover;
+ background:#ddd;
+ padding:10px;
+}
+
+/* RESPONSIVIDADE */
+@media(max-width:1600px){
+ .container{ grid-template-columns: repeat(4, 240px); }
+}
 @media(max-width:1100px){
- .container{
-  grid-template-columns: repeat(2, 240px);
- }
+ .container{ grid-template-columns: repeat(2, 240px); }
 }
 
 </style>
@@ -193,9 +277,34 @@ h1{
 
 <body>
 
+<div class="topSwitch">
+
+<div class="stack" onclick="mostrarArquivos()">
+<div class="stackPaper"></div>
+<div class="stackPaper"></div>
+<div class="stackPaper">ARQUIVOS</div>
+</div>
+
+<div class="photoStack" onclick="mostrarFotos()">
+<div class="photo"></div>
+<div class="photo"></div>
+<div class="photo"></div>
+</div>
+
+</div>
+
 <div class="table"></div>
-<h1>ARQUIVOS DO LABORATÓRIO</h1>
+<h1 id="tituloPrincipal">ARQUIVOS DO LABORATÓRIO</h1>
 <div class="container" id="container"></div>
+
+<div id="fotoArea">
+<img src="https://picsum.photos/300/400?1">
+<img src="https://picsum.photos/300/400?2">
+<img src="https://picsum.photos/300/400?3">
+<img src="https://picsum.photos/300/400?4">
+<img src="https://picsum.photos/300/400?5">
+<img src="https://picsum.photos/300/400?6">
+</div>
 
 <div class="dossie" id="dossie" onclick="fecharFora(event)">
 <div class="openFolderBack"></div>
@@ -208,6 +317,19 @@ h1{
 </div>
 
 <script>
+
+/* Alternar áreas */
+function mostrarFotos(){
+ document.getElementById("container").style.display="none";
+ document.getElementById("tituloPrincipal").style.display="none";
+ document.getElementById("fotoArea").style.display="flex";
+}
+
+function mostrarArquivos(){
+ document.getElementById("container").style.display="grid";
+ document.getElementById("tituloPrincipal").style.display="block";
+ document.getElementById("fotoArea").style.display="none";
+}
 
 /* PÁGINAS */
 let paginas=[
@@ -226,11 +348,8 @@ function atualizarPagina(){
 document.getElementById("paperLeft").innerHTML="<h2>"+paginas[paginaAtual].titulo+"</h2>";
 document.getElementById("paperRight").innerHTML="<p>"+paginas[paginaAtual].texto+"</p>";
 
-const setaEsquerda = document.querySelector(".arrowLeft");
-const setaDireita = document.querySelector(".arrowRight");
-
-setaEsquerda.style.display = paginaAtual === 0 ? "none" : "flex";
-setaDireita.style.display = paginaAtual === paginas.length - 1 ? "none" : "flex";
+document.querySelector(".arrowLeft").style.display = paginaAtual === 0 ? "none" : "flex";
+document.querySelector(".arrowRight").style.display = paginaAtual === paginas.length - 1 ? "none" : "flex";
 }
 
 function proximaPagina(){
