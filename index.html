@@ -3,252 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <title>Arquivos do Laboratório</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
 <style>
-*{
- font-family:'Special Elite', Courier, monospace;
- box-sizing:border-box;
-}
-
-/* FUNDO */
+*{font-family:'Special Elite', Courier, monospace;box-sizing:border-box;}
 body{
- margin:0;
- overflow:hidden;
+ margin:0;overflow:hidden;
  background:
  radial-gradient(circle at 20% 10%, rgba(0,0,0,.9), transparent 50%),
  radial-gradient(circle at 80% 30%, rgba(0,0,0,.85), transparent 60%),
  linear-gradient(#111,#050505);
- color:#ddd;
- text-align:center;
- min-height:100vh;
- display:flex;
- flex-direction:column;
- align-items:center;
+ color:#ddd;text-align:center;min-height:100vh;
+ display:flex;flex-direction:column;align-items:center;
 }
 
-/* COMPUTADOR CRT */
-.pcCRT{
- position:fixed; top:20px; left:20px;
- width:210px;height:180px;
- background:linear-gradient(#c9c1a8,#a79f86);
- border-radius:14px;
- box-shadow:0 35px 60px rgba(0,0,0,.9), inset 0 0 15px rgba(0,0,0,.35);
- z-index:999; cursor:pointer;
-}
-.pcCRT .screen{
- position:absolute; top:22px; left:22px;
- width:166px;height:120px;
- background:#001a00;
- border-radius:8px;
- overflow:hidden;
- box-shadow: inset 0 0 25px #00ff88, inset 0 0 5px #00ff88;
-}
-.pcCRT .noise{
- position:absolute; inset:0;
- background:repeating-linear-gradient(
-  to bottom,
-  rgba(0,255,120,.15),
-  rgba(0,255,120,.15) 1px,
-  transparent 1px,
-  transparent 3px
- );
- animation:crtNoise .18s infinite;
-}
-@keyframes crtNoise{
-0%{transform:translateY(0)}
-50%{transform:translateY(1px)}
-100%{transform:translateY(0)}
-}
-.pcCRT .slot{
- position:absolute;bottom:22px;left:50%;
- transform:translateX(-50%);
- width:70px;height:6px;background:#2c2c2c;
-}
+/* CRT */
+.pcCRT{position:fixed;top:20px;left:20px;width:210px;height:180px;
+background:linear-gradient(#c9c1a8,#a79f86);border-radius:14px;
+box-shadow:0 35px 60px rgba(0,0,0,.9), inset 0 0 15px rgba(0,0,0,.35);
+z-index:999;cursor:pointer;}
+.pcCRT .screen{position:absolute;top:22px;left:22px;width:166px;height:120px;
+background:#001a00;border-radius:8px;overflow:hidden;
+box-shadow: inset 0 0 25px #00ff88, inset 0 0 5px #00ff88;}
+.pcCRT .noise{position:absolute;inset:0;background:repeating-linear-gradient(
+to bottom,rgba(0,255,120,.15),rgba(0,255,120,.15) 1px,transparent 1px,transparent 3px);
+animation:crtNoise .18s infinite;}
+@keyframes crtNoise{0%{transform:translateY(0)}50%{transform:translateY(1px)}100%{transform:translateY(0)}}
+.pcCRT .slot{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+width:70px;height:6px;background:#2c2c2c;}
 
 /* TERMINAL */
-#terminal{
- position:fixed;top:50%;left:50%;
- transform:translate(-50%,-50%);
- width:520px;background:#021b02;
- border:2px solid #00ff88;
- box-shadow:0 0 40px rgba(0,255,120,.4);
- display:none;flex-direction:column;
- z-index:5000;border-radius:6px;
-}
-#terminalHeader{
- background:#00ff88;color:black;
- padding:6px;text-align:left;font-size:14px;
-}
+#terminal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+width:520px;background:#021b02;border:2px solid #00ff88;
+box-shadow:0 0 40px rgba(0,255,120,.4);display:none;flex-direction:column;
+z-index:5000;border-radius:6px;}
+#terminalHeader{background:#00ff88;color:black;padding:6px;text-align:left;
+font-size:14px;position:relative;}
+#fecharBusca{position:absolute;right:10px;top:2px;color:red;font-size:18px;
+cursor:pointer;font-weight:bold;}
 #terminalBody{padding:25px;}
-#terminal input{
- background:black;color:#00ff88;border:none;
- border-bottom:1px solid #00ff88;
- font-size:18px;outline:none;width:100%;
-}
+#terminal input{background:black;color:#00ff88;border:none;
+border-bottom:1px solid #00ff88;font-size:18px;outline:none;width:100%;}
 
-/* MENU SUPERIOR */
-.topSwitch{
- position:fixed; top:40px; right:60px;
- display:flex; gap:60px;
- z-index:10; transition:.3s;
-}
-.topSwitch.bloqueado{
- pointer-events:none; opacity:.35; filter:grayscale(.6);
-}
+.destacarPasta{background:red!important;color:white!important;}
+.destacarTexto{background:red;color:white;padding:2px 4px;}
 
-/* PILHA ARQUIVOS */
-.stack{ position:relative;width:120px;height:90px;cursor:pointer;}
-.stackPaper{
- position:absolute;width:120px;height:90px;
- background:#f4edd8;
- box-shadow:0 10px 25px rgba(0,0,0,.6);
- transition:.3s;
-}
-.stackPaper:nth-child(1){ transform:rotate(-8deg); }
-.stackPaper:nth-child(2){ transform:rotate(6deg); }
+.topSwitch{position:fixed;top:40px;right:60px;display:flex;gap:60px;z-index:10;}
+.stack{position:relative;width:120px;height:90px;cursor:pointer;}
+.stackPaper{position:absolute;width:120px;height:90px;background:#f4edd8;
+box-shadow:0 10px 25px rgba(0,0,0,.6);}
+.stackPaper:nth-child(1){transform:rotate(-8deg);}
+.stackPaper:nth-child(2){transform:rotate(6deg);}
 .stackPaper:nth-child(3){
- transform:rotate(-2deg);
- display:flex;align-items:center;justify-content:center;
- font-size:14px;letter-spacing:2px;font-weight:bold;color:#111;
-}
-.stack:hover .stackPaper:nth-child(1){ transform:rotate(-15deg) translateX(-10px);}
-.stack:hover .stackPaper:nth-child(2){ transform:rotate(12deg) translateX(10px);}
+display:flex;align-items:center;justify-content:center;
+font-size:14px;letter-spacing:2px;font-weight:bold;color:#111;}
 
-/* PILHA FOTOS */
-.photoStack{ display:flex;align-items:flex-end;gap:18px;cursor:pointer;}
-.photo{
- position:relative;width:90px;height:110px;background:#fff;
- padding:8px 8px 18px 8px;
- box-shadow:0 15px 30px rgba(0,0,0,.7),0 5px 10px rgba(0,0,0,.4);
- transition:.3s;
-}
-.photo::after{
- content:"";position:absolute;top:8px;left:8px;
- width:calc(100% - 16px);height:calc(100% - 30px);background:#000;
-}
-.photo:nth-child(1){ transform:rotate(-8deg); }
-.photo:nth-child(2){ transform:rotate(6deg); }
-.photo:nth-child(3){ transform:rotate(-4deg); }
+.photoStack{display:flex;align-items:flex-end;gap:18px;cursor:pointer;}
+.photo{position:relative;width:90px;height:110px;background:#fff;
+padding:8px 8px 18px 8px;
+box-shadow:0 15px 30px rgba(0,0,0,.7),0 5px 10px rgba(0,0,0,.4);}
+.photo::after{content:"";position:absolute;top:8px;left:8px;
+width:calc(100% - 16px);height:calc(100% - 30px);background:#000;}
 
-/* MESA */
-.table{
- position:fixed;bottom:0;width:100%;height:280px;
- background:linear-gradient(#2a1a10,#1a0f08);
- box-shadow: inset 0 30px 60px rgba(0,0,0,.9);
-}
+.table{position:fixed;bottom:0;width:100%;height:280px;
+background:linear-gradient(#2a1a10,#1a0f08);}
+h1{letter-spacing:6px;margin-top:60px;font-size:28px;}
+.container{display:grid;grid-template-columns:repeat(6,240px);
+gap:70px;justify-content:center;margin-top:100px;}
 
-/* TITULO */
-h1{ letter-spacing:6px;margin-top:60px;font-size:28px;}
+.folder{width:240px;height:320px;position:relative;cursor:pointer;}
+.base{position:absolute;width:100%;height:100%;
+background:linear-gradient(#7a5a35,#5b3f22);border-radius:8px;}
+.cover{position:absolute;width:100%;height:100%;border-radius:8px;
+transform-origin:left;transition:.8s;background:linear-gradient(#8b6b40,#5f4326);}
+.folder.open .cover{transform:rotateY(-130deg);}
+.label{position:absolute;top:14px;left:50%;transform:translateX(-50%);
+background:#efe6c8;padding:6px 18px;color:black;font-size:15px;}
 
-/* GRID PASTAS */
-.container{
- display:grid;
- grid-template-columns: repeat(6, 240px);
- gap:70px;
- justify-content:center;
- margin-top:100px;
-}
+.dossie{position:fixed;inset:0;background:rgba(0,0,0,.92);
+display:none;justify-content:center;align-items:center;z-index:1000;}
+.openFolderBack{position:absolute;width:1000px;height:700px;background:#7b552f;}
+.book{position:relative;display:flex;gap:30px;z-index:2;}
+.paper{width:450px;height:620px;background:#f4edd8;color:#111;padding:40px;}
 
-/* PASTAS */
-.folder{ width:240px;height:320px;position:relative;cursor:pointer;}
-.base{
- position:absolute;width:100%;height:100%;
- background:linear-gradient(#7a5a35,#5b3f22);
- border-radius:8px;
- box-shadow:0 25px 50px rgba(0,0,0,.9), inset 0 0 30px rgba(0,0,0,.6);
-}
-.cover{
- position:absolute;width:100%;height:100%;
- border-radius:8px;transform-origin:left;
- transition:.8s;background:linear-gradient(#8b6b40,#5f4326);
-}
-.folder.open .cover{ transform:rotateY(-130deg); }
+.arrow{position:absolute;top:50%;transform:translateY(-50%);
+font-size:42px;background:#efe6c8;color:black;width:65px;height:75px;
+display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.arrowLeft{left:-100px;}
+.arrowRight{right:-100px;}
 
-/* ETIQUETA TORTA */
-.label{
- position:absolute;
- top:14px;left:50%;
- transform:translateX(-50%) rotate(-5deg);
- background:#efe6c8;
- padding:6px 18px;
- color:black;
- font-size:15px;
- box-shadow:0 4px 8px rgba(0,0,0,.6);
-}
+#fotoArea{position:absolute;top:0;left:0;width:100%;height:100%;
+display:none;flex-wrap:wrap;justify-content:center;gap:40px;padding-top:160px;}
+#fotoArea img{width:280px;height:380px;object-fit:cover;background:#ddd;padding:10px;cursor:pointer;}
 
-/* DOSSIÊ */
-.dossie{
- position:fixed; inset:0;
- background:rgba(0,0,0,.92);
- display:none;justify-content:center;align-items:center;
- z-index:1000;
-}
-.openFolderBack{
- position:absolute;width:1000px;height:700px;
- background:#7b552f;border-radius:6px;
- box-shadow:0 60px 120px rgba(0,0,0,.9), inset 0 0 35px rgba(0,0,0,.6);
- padding:20px;
-}
-.book{ position:relative;display:flex;gap:30px;z-index:2;}
-.paper{
- width:450px;height:620px;
- background:#f4edd8;color:#111;
- padding:40px;
- box-shadow:0 30px 50px rgba(0,0,0,.7);
- text-align:left;font-size:14px;line-height:1.7;
-}
-
-.arrow{
- position:absolute;top:50%;
- transform:translateY(-50%);
- font-size:42px;background:#efe6c8;color:black;
- width:65px;height:75px;
- display:flex;align-items:center;justify-content:center;
- cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.6);
- z-index:3;
-}
-.arrowLeft{ left:-100px;}
-.arrowRight{ right:-100px;}
-
-/* FOTOS */
-#fotoArea{
- position:absolute;top:0;left:0;width:100%;height:100%;
- display:none;flex-wrap:wrap;justify-content:center;
- align-items:flex-start;gap:40px;padding-top:160px;
-}
-#fotoArea img{
- width:280px;height:380px;object-fit:cover;
- background:#ddd;padding:10px;cursor:pointer;
-}
-
-/* VIEWER */
-#viewer{
- position:fixed; inset:0;
- background:rgba(0,0,0,.95);
- display:none;justify-content:center;align-items:center;
- perspective:1200px;
- z-index:2000;
- cursor:grab;
-}
-#viewer img{
- max-width:80vw;max-height:80vh;
- transform-style:preserve-3d;
- transition:transform .15s;
-}
+#viewer{position:fixed;inset:0;background:rgba(0,0,0,.95);
+display:none;justify-content:center;align-items:center;z-index:2000;}
+#viewer img{max-width:80vw;max-height:80vh;}
 </style>
 </head>
 
 <body>
 
 <div class="pcCRT" id="pc" onclick="abrirTerminal()">
- <div class="screen"><div class="noise"></div></div>
- <div class="slot"></div>
+<div class="screen"><div class="noise"></div></div>
+<div class="slot"></div>
 </div>
 
 <div id="terminal">
-<div id="terminalHeader">SISTEMA DE BUSCA</div>
+<div id="terminalHeader">
+SISTEMA DE BUSCA
+<span id="fecharBusca" onclick="fecharTerminal()">✖</span>
+</div>
 <div id="terminalBody">
 <input type="text" id="searchInput" placeholder="Digite palavra-chave..." onkeyup="buscarTerminal()">
 </div>
@@ -260,11 +125,8 @@ h1{ letter-spacing:6px;margin-top:60px;font-size:28px;}
 <div class="stackPaper"></div>
 <div class="stackPaper">ARQUIVOS</div>
 </div>
-
 <div class="photoStack" onclick="mostrarFotos()">
-<div class="photo"></div>
-<div class="photo"></div>
-<div class="photo"></div>
+<div class="photo"></div><div class="photo"></div><div class="photo"></div>
 </div>
 </div>
 
@@ -273,15 +135,17 @@ h1{ letter-spacing:6px;margin-top:60px;font-size:28px;}
 <div class="container" id="container"></div>
 
 <div id="fotoArea">
-<img src="https://picsum.photos/300/400?1">
-<img src="https://picsum.photos/300/400?2">
-<img src="https://picsum.photos/300/400?3">
-<img src="https://picsum.photos/300/400?4">
-<img src="https://picsum.photos/300/400?5">
-<img src="https://picsum.photos/300/400?6">
+<img src="https://picsum.photos/300/400?1" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?2" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?3" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?4" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?5" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?6" onclick="verFoto(this)">
 </div>
 
-<div id="viewer"><img id="viewerImg"></div>
+<div id="viewer" onclick="this.style.display='none'">
+<img id="viewerImg">
+</div>
 
 <div class="dossie" id="dossie" onclick="fecharFora(event)">
 <div class="openFolderBack"></div>
@@ -294,21 +158,28 @@ h1{ letter-spacing:6px;margin-top:60px;font-size:28px;}
 </div>
 
 <script>
+function abrirTerminal(){ terminal.style.display="flex"; searchInput.focus(); }
+function fecharTerminal(){ terminal.style.display="none"; searchInput.value=""; limparDestaques(); }
 
-/* ===== TERMINAL ===== */
-function abrirTerminal(){
- terminal.style.display="flex";
- searchInput.focus();
- menuTop.classList.add("bloqueado");
+function limparDestaques(){
+ document.querySelectorAll(".label").forEach(l=>l.classList.remove("destacarPasta"));
+ document.querySelectorAll(".destacarTexto").forEach(el=>el.outerHTML=el.innerText);
 }
-document.addEventListener("keydown",e=>{
- if(e.key==="Escape"){
-  terminal.style.display="none";
-  menuTop.classList.remove("bloqueado");
- }
-});
 
-/* ===== ABAS ===== */
+function buscarTerminal(){
+ const termo=searchInput.value.toLowerCase();
+ limparDestaques();
+ if(!termo)return;
+
+ paginas.forEach((p,i)=>{
+  if(p.titulo.toLowerCase().includes(termo)||p.texto.toLowerCase().includes(termo)){
+   if(container.children[i]){
+    container.children[i].querySelector(".label").classList.add("destacarPasta");
+   }
+  }
+ });
+}
+
 function mostrarFotos(){
  container.style.display="none";
  tituloPrincipal.style.display="none";
@@ -322,19 +193,11 @@ function mostrarArquivos(){
  pc.style.display="block";
 }
 
-/* ===== BUSCA ===== */
-function buscarTerminal(){
- const termo=searchInput.value.toLowerCase();
- if(!termo)return;
- const index=paginas.findIndex(p=>p.titulo.toLowerCase().includes(termo)||p.texto.toLowerCase().includes(termo));
- if(index!==-1){
-  paginaAtual=index;
-  atualizarPagina();
-  dossie.style.display="flex";
- }
+function verFoto(img){
+ viewerImg.src=img.src;
+ viewer.style.display="flex";
 }
 
-/* ===== PAGINAS ===== */
 let paginas=[
 { titulo:"RELATÓRIO 01", texto:"Documento classificado. Informação restrita." },
 { titulo:"HISTÓRICO", texto:"Sujeito considerado altamente perigoso." },
@@ -350,11 +213,9 @@ function atualizarPagina(){
  paperLeft.innerHTML="<h2>"+paginas[paginaAtual].titulo+"</h2>";
  paperRight.innerHTML="<p>"+paginas[paginaAtual].texto+"</p>";
 }
-
 function proximaPagina(){ if(paginaAtual<paginas.length-1){ paginaAtual++; atualizarPagina();}}
 function paginaAnterior(){ if(paginaAtual>0){ paginaAtual--; atualizarPagina();}}
 
-/* ===== PASTAS ===== */
 let nomes=["Elizabeth","Sebastian","Caleb","Hazel","Calli","Void","Abbadon","Belzebu","Oliver","???","???","???","???","???"];
 
 for(let n of nomes){
@@ -367,7 +228,6 @@ for(let n of nomes){
   paginaAtual=0;
   atualizarPagina();
   dossie.style.display="flex";
-  menuTop.classList.add("bloqueado");
  };
  container.appendChild(pasta);
 }
@@ -376,59 +236,8 @@ function fecharFora(e){
  if(e.target.id==="dossie"){
   dossie.style.display="none";
   if(pastaAtual)pastaAtual.classList.remove("open");
-  menuTop.classList.remove("bloqueado");
  }
-}
-
-/* ===== VIEWER FOTO ===== */
-let viewer=document.getElementById("viewer");
-let viewerImg=document.getElementById("viewerImg");
-let zoom=1,posX=0,posY=0,drag=false,startX,startY;
-
-document.querySelectorAll("#fotoArea img").forEach(img=>{
- img.onclick=()=>{
-  viewer.style.display="flex";
-  viewerImg.src=img.src;
-  zoom=1;posX=0;posY=0;
-  aplicar();
-  menuTop.classList.add("bloqueado");
- };
-});
-
-viewer.onclick=e=>{
- if(e.target===viewer){
-  viewer.style.display="none";
-  menuTop.classList.remove("bloqueado");
- }
-};
-
-viewer.addEventListener("wheel",e=>{
- e.preventDefault();
- zoom+=e.deltaY*-0.001;
- zoom=Math.min(Math.max(.6,zoom),4);
- aplicar();
-});
-
-viewer.addEventListener("mousedown",e=>{
- drag=true;
- startX=e.clientX-posX;
- startY=e.clientY-posY;
-});
-window.addEventListener("mouseup",()=>drag=false);
-window.addEventListener("mousemove",e=>{
- if(viewer.style.display!=="flex")return;
- if(drag){
-  posX=e.clientX-startX;
-  posY=e.clientY-startY;
- }
- viewerImg.style.transform=
- `translate(${posX}px,${posY}px) scale(${zoom})`;
-});
-
-function aplicar(){
- viewerImg.style.transform=`translate(${posX}px,${posY}px) scale(${zoom})`;
 }
 </script>
-
 </body>
 </html>
