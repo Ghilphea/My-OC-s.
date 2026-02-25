@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,57 +18,113 @@ body{
  display:flex;flex-direction:column;align-items:center;
 }
 
-/* (TODO O SEU CSS ORIGINAL PERMANECE IGUAL — OMITI AQUI PRA NÃO FICAR GIGANTE) */
-/* USE EXATAMENTE O CSS QUE VOCÊ JÁ TEM */
-
-/* ===== COMPUTADOR CRT ===== */
-#crtComputer{
+/* MENU SUPERIOR */
+.topSwitch{
  position:fixed;
- right:40px;
- bottom:40px;
- width:140px;
- height:120px;
- background:#1b1b1b;
- border-radius:8px;
- box-shadow:0 15px 30px rgba(0,0,0,.8);
- cursor:pointer;
+ top:40px;
+ right:60px;
  display:flex;
- align-items:center;
- justify-content:center;
- z-index:3000;
+ gap:60px;
+ z-index:10;
+ transition:.3s;
 }
-.crtScreen{
- width:90px;height:70px;
- background:#001b00;
- color:#00ff88;
- display:flex;
- align-items:center;
- justify-content:center;
- box-shadow:inset 0 0 20px #00ff88;
- animation:flicker 2s infinite;
+.topSwitch.bloqueado{
+ pointer-events:none;
+ opacity:.35;
+ filter:grayscale(.6);
 }
-@keyframes flicker{0%,100%{opacity:.9}50%{opacity:1}}
 
-#terminal{
+/* PAPÉIS */
+.stack{ position:relative;width:120px;height:90px;cursor:pointer;}
+.stackPaper{
+ position:absolute;width:120px;height:90px;
+ background:#f4edd8;
+ box-shadow:0 10px 25px rgba(0,0,0,.6);
+ transition:.3s;
+}
+.stackPaper:nth-child(1){ transform:rotate(-8deg); }
+.stackPaper:nth-child(2){ transform:rotate(6deg); }
+.stackPaper:nth-child(3){
+ transform:rotate(-2deg);
+ display:flex;align-items:center;justify-content:center;
+ font-size:14px;letter-spacing:2px;font-weight:bold;color:#111;
+}
+.stack:hover .stackPaper:nth-child(1){ transform:rotate(-15deg) translateX(-10px);}
+.stack:hover .stackPaper:nth-child(2){ transform:rotate(12deg) translateX(10px);}
+
+/* FOTOS MINI */
+.photoStack{ display:flex;align-items:flex-end;gap:18px;cursor:pointer;}
+.photo{
+ position:relative;width:90px;height:110px;background:#fff;
+ padding:8px 8px 18px 8px;
+ box-shadow:0 15px 30px rgba(0,0,0,.7),0 5px 10px rgba(0,0,0,.4);
+ transition:.3s;
+}
+.photo::after{
+ content:"";position:absolute;top:8px;left:8px;
+ width:calc(100% - 16px);height:calc(100% - 30px);background:#000;
+}
+.photo:nth-child(1){ transform:rotate(-8deg); }
+.photo:nth-child(2){ transform:rotate(6deg); }
+.photo:nth-child(3){ transform:rotate(-4deg); }
+
+.photoStack:hover .photo:nth-child(1){ transform:rotate(-15deg) translateY(-6px);}
+.photoStack:hover .photo:nth-child(2){ transform:rotate(12deg) translateY(-8px);}
+.photoStack:hover .photo:nth-child(3){ transform:rotate(-10deg) translateY(-6px);}
+
+.table{
+ position:fixed;bottom:0;width:100%;height:280px;
+ background:linear-gradient(#2a1a10,#1a0f08);
+ box-shadow: inset 0 30px 60px rgba(0,0,0,.9);
+}
+
+h1{ letter-spacing:6px;margin-top:60px;font-size:28px;}
+
+.container{
+ display:grid;
+ grid-template-columns: repeat(6, 240px);
+ gap:70px;
+ justify-content:center;
+ margin-top:100px;
+}
+
+.folder{ width:240px;height:320px;position:relative;cursor:pointer;}
+.base{position:absolute;width:100%;height:100%;background:linear-gradient(#7a5a35,#5b3f22);border-radius:8px;box-shadow:0 25px 50px rgba(0,0,0,.9), inset 0 0 30px rgba(0,0,0,.6);}
+.cover{position:absolute;width:100%;height:100%;border-radius:8px;transform-origin:left;transition:.8s;background:linear-gradient(#8b6b40,#5f4326);}
+.folder.open .cover{ transform:rotateY(-130deg);}
+.label{position:absolute;top:14px;left:50%;transform:translateX(-50%) rotate(-4deg);background:#efe6c8;padding:6px 18px;color:black;font-size:15px;box-shadow:0 4px 8px rgba(0,0,0,.6);}
+
+/* DOSSIÊ */
+.dossie{
+ position:fixed; inset:0;
+ background:rgba(0,0,0,.92);
+ display:none;justify-content:center;align-items:center;
+ z-index:1000;
+}
+.openFolderBack{position:absolute;width:1000px;height:700px;background:#7b552f;border-radius:6px;box-shadow:0 60px 120px rgba(0,0,0,.9), inset 0 0 35px rgba(0,0,0,.6);padding:20px;}
+.book{ position:relative;display:flex;gap:30px;z-index:2;}
+.paper{width:450px;height:620px;background:#f4edd8;color:#111;padding:40px;border:1px solid rgba(0,0,0,.2);box-shadow:0 30px 50px rgba(0,0,0,.7);text-align:left;font-size:14px;line-height:1.7;}
+
+.arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:42px;background:#efe6c8;color:black;width:65px;height:75px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.6);z-index:3;}
+.arrowLeft{ left:-100px;}
+.arrowRight{ right:-100px;}
+
+#fotoArea{
+ position:absolute;top:0;left:0;width:100%;height:100%;
+ display:none;flex-wrap:wrap;justify-content:center;
+ align-items:flex-start;gap:40px;padding-top:160px;
+}
+#fotoArea img{width:280px;height:380px;object-fit:cover;background:#ddd;padding:10px;cursor:pointer;}
+
+#viewer{
  position:fixed; inset:0;
  background:rgba(0,0,0,.95);
- display:none; align-items:center; justify-content:center;
- z-index:5000;
+ display:none;justify-content:center;align-items:center;
+ perspective:1200px;
+ z-index:2000;
+ cursor:grab;
 }
-.terminalBox{
- width:700px;height:500px;
- background:#001b00;
- border:2px solid #00ff88;
- padding:20px;
- color:#00ff88;
- box-shadow:0 0 40px #00ff88;
- display:flex;flex-direction:column;
-}
-#buscaInput{
- background:black;color:#00ff88;border:1px solid #00ff88;
- padding:10px;margin-bottom:10px;
-}
-#resultadoBusca{flex:1;overflow:auto;text-align:left;}
+#viewer img{max-width:80vw;max-height:80vh;transform-style:preserve-3d;transition:transform .15s;}
 </style>
 </head>
 
@@ -114,25 +169,8 @@ body{
 </div>
 </div>
 
-<!-- ===== COMPUTADOR ===== -->
-<div id="crtComputer" onclick="abrirTerminal()">
-<div class="crtScreen">></div>
-</div>
-
-<!-- ===== TERMINAL ===== -->
-<div id="terminal">
-<div class="terminalBox">
-<div>SISTEMA DE BUSCA — LAB</div>
-<input id="buscaInput" placeholder="DIGITE PALAVRA..." oninput="buscarTexto()">
-<div id="resultadoBusca"></div>
-<button onclick="fecharTerminal()">FECHAR</button>
-</div>
-</div>
-
 <script>
 const menu=document.getElementById("menuTop");
-
-/* ======= SEU SCRIPT ORIGINAL RESTAURADO ======= */
 
 function mostrarFotos(){
  container.style.display="none";
@@ -145,6 +183,7 @@ function mostrarArquivos(){
  fotoArea.style.display="none";
 }
 
+/* PAGINAS */
 let paginas=[
 { titulo:"RELATÓRIO 01", texto:"Documento classificado. Informação restrita." },
 { titulo:"HISTÓRICO", texto:"Sujeito considerado altamente perigoso." },
@@ -155,6 +194,7 @@ let paginas=[
 ];
 
 let paginaAtual=0,pastaAtual=null;
+
 const setaEsquerda=document.querySelector(".arrowLeft");
 const setaDireita=document.querySelector(".arrowRight");
 
@@ -162,13 +202,26 @@ function atualizarSetas(){
  setaEsquerda.style.display = paginaAtual===0 ? "none":"flex";
  setaDireita.style.display = paginaAtual===paginas.length-1 ? "none":"flex";
 }
+
 function atualizarPagina(){
  paperLeft.innerHTML="<h2>"+paginas[paginaAtual].titulo+"</h2>";
  paperRight.innerHTML="<p>"+paginas[paginaAtual].texto+"</p>";
  atualizarSetas();
 }
-function proximaPagina(){ if(paginaAtual<paginas.length-1){ paginaAtual++; atualizarPagina(); }}
-function paginaAnterior(){ if(paginaAtual>0){ paginaAtual--; atualizarPagina(); }}
+
+function proximaPagina(){
+ if(paginaAtual<paginas.length-1){
+  paginaAtual++;
+  atualizarPagina();
+ }
+}
+
+function paginaAnterior(){
+ if(paginaAtual>0){
+  paginaAtual--;
+  atualizarPagina();
+ }
+}
 
 let nomes=["Elizabeth","Sebastian","Caleb","Hazel","Calli","Void","Abbadon","Belzebu","Oliver","???","???","???","???","???"];
 
@@ -195,34 +248,59 @@ function fecharFora(e){
  }
 }
 
-/* ===== TERMINAL ===== */
+/* VISUALIZADOR FOTO */
+let viewer=document.getElementById("viewer");
+let viewerImg=document.getElementById("viewerImg");
+let zoom=1,posX=0,posY=0,drag=false,startX,startY;
 
-function abrirTerminal(){
- terminal.style.display="flex";
- menu.classList.add("bloqueado");
- buscaInput.value="";
- resultadoBusca.innerHTML="";
-}
-function fecharTerminal(){
- terminal.style.display="none";
- menu.classList.remove("bloqueado");
-}
-function buscarTexto(){
- let termo=buscaInput.value.toLowerCase();
- resultadoBusca.innerHTML="";
- if(!termo)return;
- paginas.forEach(p=>{
-   let t=(p.titulo+" "+p.texto).toLowerCase();
-   if(t.includes(termo)){
-     let div=document.createElement("div");
-     div.innerHTML=`<b>${p.titulo}</b><br>${p.texto}<hr>`;
-     resultadoBusca.appendChild(div);
-   }
- });
- if(resultadoBusca.innerHTML==="")resultadoBusca.innerHTML="NENHUM RESULTADO";
+document.querySelectorAll("#fotoArea img").forEach(img=>{
+ img.onclick=()=>{
+  viewer.style.display="flex";
+  viewerImg.src=img.src;
+  zoom=1;posX=0;posY=0;
+  aplicar();
+  menu.classList.add("bloqueado");
+ };
+});
+
+viewer.onclick=e=>{
+ if(e.target===viewer){
+  viewer.style.display="none";
+  menu.classList.remove("bloqueado");
+ }
+};
+
+viewer.addEventListener("wheel",e=>{
+ e.preventDefault();
+ zoom+=e.deltaY*-0.001;
+ zoom=Math.min(Math.max(.6,zoom),4);
+ aplicar();
+});
+
+viewer.addEventListener("mousedown",e=>{
+ drag=true;
+ startX=e.clientX-posX;
+ startY=e.clientY-posY;
+});
+
+window.addEventListener("mouseup",()=>drag=false);
+
+window.addEventListener("mousemove",e=>{
+ if(viewer.style.display!=="flex")return;
+ if(drag){
+  posX=e.clientX-startX;
+  posY=e.clientY-startY;
+ }
+ let rect=viewerImg.getBoundingClientRect();
+ let x=(e.clientX-rect.left)/rect.width-.5;
+ let y=(e.clientY-rect.top)/rect.height-.5;
+ viewerImg.style.transform=
+ `translate(${posX}px,${posY}px) scale(${zoom}) rotateY(${x*12}deg) rotateX(${-y*12}deg)`;
+});
+
+function aplicar(){
+ viewerImg.style.transform=`translate(${posX}px,${posY}px) scale(${zoom})`;
 }
 </script>
-
 </body>
 </html>
-```
