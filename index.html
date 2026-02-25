@@ -78,6 +78,15 @@ h1{letter-spacing:6px;margin-top:60px;font-size:28px;}
 .arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:42px;background:#efe6c8;color:black;width:65px;height:75px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .arrowLeft{left:-100px;}
 .arrowRight{right:-100px;}
+
+/* === FOTOS === */
+#fotoArea{position:absolute;top:0;left:0;width:100%;height:100%;
+display:none;flex-wrap:wrap;justify-content:center;gap:40px;padding-top:160px;}
+#fotoArea img{width:280px;height:380px;object-fit:cover;background:#ddd;padding:10px;cursor:pointer;}
+
+#viewer{position:fixed;inset:0;background:rgba(0,0,0,.95);
+display:none;justify-content:center;align-items:center;z-index:2000;}
+#viewer img{max-width:80vw;max-height:80vh;}
 </style>
 </head>
 
@@ -104,11 +113,30 @@ SISTEMA DE BUSCA
 <div class="stackPaper"></div>
 <div class="stackPaper">ARQUIVOS</div>
 </div>
+
+<div class="photoStack" onclick="mostrarFotos()">
+<div class="photo"></div><div class="photo"></div><div class="photo"></div>
+</div>
 </div>
 
 <div class="table"></div>
 <h1 id="tituloPrincipal">ARQUIVOS DO LABORATÓRIO</h1>
+
 <div class="container" id="container"></div>
+
+<!-- AREA DE FOTOS -->
+<div id="fotoArea">
+<img src="https://picsum.photos/300/400?1" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?2" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?3" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?4" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?5" onclick="verFoto(this)">
+<img src="https://picsum.photos/300/400?6" onclick="verFoto(this)">
+</div>
+
+<div id="viewer" onclick="this.style.display='none'">
+<img id="viewerImg">
+</div>
 
 <div class="dossie" id="dossie" onclick="fecharFora(event)">
 <div class="openFolderBack"></div>
@@ -122,6 +150,26 @@ SISTEMA DE BUSCA
 
 <script>
 
+function mostrarFotos(){
+ container.style.display="none";
+ tituloPrincipal.style.display="none";
+ fotoArea.style.display="flex";
+ pc.style.display="none";
+}
+function mostrarArquivos(){
+ container.style.display="grid";
+ tituloPrincipal.style.display="block";
+ fotoArea.style.display="none";
+ pc.style.display="block";
+}
+
+function verFoto(img){
+ viewerImg.src=img.src;
+ viewer.style.display="flex";
+}
+
+/* === RESTO DO SEU JS ORIGINAL === */
+
 function abrirTerminal(){ terminal.style.display="flex"; searchInput.focus(); }
 function fecharTerminal(){ terminal.style.display="none"; searchInput.value=""; limparDestaques(); }
 
@@ -130,7 +178,6 @@ function limparDestaques(){
  document.querySelectorAll(".destacarTexto").forEach(e=>e.outerHTML=e.innerText);
 }
 
-/* BUSCA FUNCIONA PARA TODAS AS PASTAS */
 function buscarTerminal(){
  const termo=searchInput.value.toLowerCase();
  limparDestaques();
@@ -140,13 +187,11 @@ function buscarTerminal(){
 
  paginas.forEach((p,i)=>{
   if(p.titulo.toLowerCase().includes(termo)||p.texto.toLowerCase().includes(termo)){
-
     document.querySelectorAll(".folder").forEach((f,fi)=>{
       if(fi % paginas.length===i){
         f.querySelector(".label").classList.add("destacarPasta");
       }
     });
-
     if(primeira===null) primeira=i;
   }
  });
