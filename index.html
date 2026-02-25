@@ -32,7 +32,6 @@ animation:crtNoise .18s infinite;}
 .pcCRT .slot{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
 width:70px;height:6px;background:#2c2c2c;}
 
-/* TERMINAL */
 #terminal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
 width:520px;background:#021b02;border:2px solid #00ff88;
 box-shadow:0 0 40px rgba(0,255,120,.4);display:none;flex-direction:column;
@@ -54,51 +53,31 @@ border-bottom:1px solid #00ff88;font-size:18px;outline:none;width:100%;}
 box-shadow:0 10px 25px rgba(0,0,0,.6);}
 .stackPaper:nth-child(1){transform:rotate(-8deg);}
 .stackPaper:nth-child(2){transform:rotate(6deg);}
-.stackPaper:nth-child(3){
-display:flex;align-items:center;justify-content:center;
-font-size:14px;letter-spacing:2px;font-weight:bold;color:#111;}
+.stackPaper:nth-child(3){display:flex;align-items:center;justify-content:center;font-size:14px;letter-spacing:2px;font-weight:bold;color:#111;}
 
 .photoStack{display:flex;align-items:flex-end;gap:18px;cursor:pointer;}
-.photo{position:relative;width:90px;height:110px;background:#fff;
-padding:8px 8px 18px 8px;
+.photo{position:relative;width:90px;height:110px;background:#fff;padding:8px 8px 18px 8px;
 box-shadow:0 15px 30px rgba(0,0,0,.7),0 5px 10px rgba(0,0,0,.4);}
-.photo::after{content:"";position:absolute;top:8px;left:8px;
-width:calc(100% - 16px);height:calc(100% - 30px);background:#000;}
+.photo::after{content:"";position:absolute;top:8px;left:8px;width:calc(100% - 16px);height:calc(100% - 30px);background:#000;}
 
-.table{position:fixed;bottom:0;width:100%;height:280px;
-background:linear-gradient(#2a1a10,#1a0f08);}
+.table{position:fixed;bottom:0;width:100%;height:280px;background:linear-gradient(#2a1a10,#1a0f08);}
 h1{letter-spacing:6px;margin-top:60px;font-size:28px;}
-.container{display:grid;grid-template-columns:repeat(6,240px);
-gap:70px;justify-content:center;margin-top:100px;}
+.container{display:grid;grid-template-columns:repeat(6,240px);gap:70px;justify-content:center;margin-top:100px;}
 
 .folder{width:240px;height:320px;position:relative;cursor:pointer;}
-.base{position:absolute;width:100%;height:100%;
-background:linear-gradient(#7a5a35,#5b3f22);border-radius:8px;}
-.cover{position:absolute;width:100%;height:100%;border-radius:8px;
-transform-origin:left;transition:.8s;background:linear-gradient(#8b6b40,#5f4326);}
+.base{position:absolute;width:100%;height:100%;background:linear-gradient(#7a5a35,#5b3f22);border-radius:8px;}
+.cover{position:absolute;width:100%;height:100%;border-radius:8px;transform-origin:left;transition:.8s;background:linear-gradient(#8b6b40,#5f4326);}
 .folder.open .cover{transform:rotateY(-130deg);}
-.label{position:absolute;top:14px;left:50%;transform:translateX(-50%);
-background:#efe6c8;padding:6px 18px;color:black;font-size:15px;}
+.label{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#efe6c8;padding:6px 18px;color:black;font-size:15px;}
 
-.dossie{position:fixed;inset:0;background:rgba(0,0,0,.92);
-display:none;justify-content:center;align-items:center;z-index:1000;}
+.dossie{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;justify-content:center;align-items:center;z-index:1000;}
 .openFolderBack{position:absolute;width:1000px;height:700px;background:#7b552f;}
 .book{position:relative;display:flex;gap:30px;z-index:2;}
 .paper{width:450px;height:620px;background:#f4edd8;color:#111;padding:40px;}
 
-.arrow{position:absolute;top:50%;transform:translateY(-50%);
-font-size:42px;background:#efe6c8;color:black;width:65px;height:75px;
-display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:42px;background:#efe6c8;color:black;width:65px;height:75px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .arrowLeft{left:-100px;}
 .arrowRight{right:-100px;}
-
-#fotoArea{position:absolute;top:0;left:0;width:100%;height:100%;
-display:none;flex-wrap:wrap;justify-content:center;gap:40px;padding-top:160px;}
-#fotoArea img{width:280px;height:380px;object-fit:cover;background:#ddd;padding:10px;cursor:pointer;}
-
-#viewer{position:fixed;inset:0;background:rgba(0,0,0,.95);
-display:none;justify-content:center;align-items:center;z-index:2000;}
-#viewer img{max-width:80vw;max-height:80vh;}
 </style>
 </head>
 
@@ -119,33 +98,17 @@ SISTEMA DE BUSCA
 </div>
 </div>
 
-<div class="topSwitch" id="menuTop">
+<div class="topSwitch">
 <div class="stack" onclick="mostrarArquivos()">
 <div class="stackPaper"></div>
 <div class="stackPaper"></div>
 <div class="stackPaper">ARQUIVOS</div>
-</div>
-<div class="photoStack" onclick="mostrarFotos()">
-<div class="photo"></div><div class="photo"></div><div class="photo"></div>
 </div>
 </div>
 
 <div class="table"></div>
 <h1 id="tituloPrincipal">ARQUIVOS DO LABORATÓRIO</h1>
 <div class="container" id="container"></div>
-
-<div id="fotoArea">
-<img src="https://picsum.photos/300/400?1" onclick="verFoto(this)">
-<img src="https://picsum.photos/300/400?2" onclick="verFoto(this)">
-<img src="https://picsum.photos/300/400?3" onclick="verFoto(this)">
-<img src="https://picsum.photos/300/400?4" onclick="verFoto(this)">
-<img src="https://picsum.photos/300/400?5" onclick="verFoto(this)">
-<img src="https://picsum.photos/300/400?6" onclick="verFoto(this)">
-</div>
-
-<div id="viewer" onclick="this.style.display='none'">
-<img id="viewerImg">
-</div>
 
 <div class="dossie" id="dossie" onclick="fecharFora(event)">
 <div class="openFolderBack"></div>
@@ -158,44 +121,43 @@ SISTEMA DE BUSCA
 </div>
 
 <script>
+
 function abrirTerminal(){ terminal.style.display="flex"; searchInput.focus(); }
 function fecharTerminal(){ terminal.style.display="none"; searchInput.value=""; limparDestaques(); }
 
 function limparDestaques(){
  document.querySelectorAll(".label").forEach(l=>l.classList.remove("destacarPasta"));
- document.querySelectorAll(".destacarTexto").forEach(el=>el.outerHTML=el.innerText);
+ document.querySelectorAll(".destacarTexto").forEach(e=>e.outerHTML=e.innerText);
 }
 
+/* BUSCA FUNCIONA PARA TODAS AS PASTAS */
 function buscarTerminal(){
  const termo=searchInput.value.toLowerCase();
  limparDestaques();
  if(!termo)return;
 
+ let primeira=null;
+
  paginas.forEach((p,i)=>{
   if(p.titulo.toLowerCase().includes(termo)||p.texto.toLowerCase().includes(termo)){
-   if(container.children[i]){
-    container.children[i].querySelector(".label").classList.add("destacarPasta");
-   }
+
+    document.querySelectorAll(".folder").forEach((f,fi)=>{
+      if(fi % paginas.length===i){
+        f.querySelector(".label").classList.add("destacarPasta");
+      }
+    });
+
+    if(primeira===null) primeira=i;
   }
  });
-}
 
-function mostrarFotos(){
- container.style.display="none";
- tituloPrincipal.style.display="none";
- fotoArea.style.display="flex";
- pc.style.display="none";
-}
-function mostrarArquivos(){
- container.style.display="grid";
- tituloPrincipal.style.display="block";
- fotoArea.style.display="none";
- pc.style.display="block";
-}
-
-function verFoto(img){
- viewerImg.src=img.src;
- viewer.style.display="flex";
+ if(primeira!==null){
+  paginaAtual=primeira;
+  const r=new RegExp(termo,"gi");
+  const p=paginas[paginaAtual];
+  paperLeft.innerHTML=`<h2>${p.titulo.replace(r,m=>`<span class="destacarTexto">${m}</span>`)}</h2>`;
+  paperRight.innerHTML=`<p>${p.texto.replace(r,m=>`<span class="destacarTexto">${m}</span>`)}</p>`;
+ }
 }
 
 let paginas=[
@@ -213,24 +175,25 @@ function atualizarPagina(){
  paperLeft.innerHTML="<h2>"+paginas[paginaAtual].titulo+"</h2>";
  paperRight.innerHTML="<p>"+paginas[paginaAtual].texto+"</p>";
 }
+
 function proximaPagina(){ if(paginaAtual<paginas.length-1){ paginaAtual++; atualizarPagina();}}
 function paginaAnterior(){ if(paginaAtual>0){ paginaAtual--; atualizarPagina();}}
 
 let nomes=["Elizabeth","Sebastian","Caleb","Hazel","Calli","Void","Abbadon","Belzebu","Oliver","???","???","???","???","???"];
 
-for(let n of nomes){
+nomes.forEach((n,i)=>{
  let pasta=document.createElement("div");
  pasta.className="folder";
  pasta.innerHTML=`<div class="base"></div><div class="cover"><div class="label">${n}</div></div>`;
  pasta.onclick=function(){
   pastaAtual=this;
   this.classList.add("open");
-  paginaAtual=0;
+  paginaAtual=i % paginas.length;
   atualizarPagina();
   dossie.style.display="flex";
  };
  container.appendChild(pasta);
-}
+});
 
 function fecharFora(e){
  if(e.target.id==="dossie"){
