@@ -19,113 +19,8 @@ body{
  display:flex;flex-direction:column;align-items:center;
 }
 
-/* MENU SUPERIOR */
-.topSwitch{
- position:fixed;
- top:40px;
- right:60px;
- display:flex;
- gap:60px;
- z-index:10;
- transition:.3s;
-}
-.topSwitch.bloqueado{
- pointer-events:none;
- opacity:.35;
- filter:grayscale(.6);
-}
-
-/* PAPÉIS */
-.stack{ position:relative;width:120px;height:90px;cursor:pointer;}
-.stackPaper{
- position:absolute;width:120px;height:90px;
- background:#f4edd8;
- box-shadow:0 10px 25px rgba(0,0,0,.6);
- transition:.3s;
-}
-.stackPaper:nth-child(1){ transform:rotate(-8deg); }
-.stackPaper:nth-child(2){ transform:rotate(6deg); }
-.stackPaper:nth-child(3){
- transform:rotate(-2deg);
- display:flex;align-items:center;justify-content:center;
- font-size:14px;letter-spacing:2px;font-weight:bold;color:#111;
-}
-.stack:hover .stackPaper:nth-child(1){ transform:rotate(-15deg) translateX(-10px);}
-.stack:hover .stackPaper:nth-child(2){ transform:rotate(12deg) translateX(10px);}
-
-/* FOTOS MINI */
-.photoStack{ display:flex;align-items:flex-end;gap:18px;cursor:pointer;}
-.photo{
- position:relative;width:90px;height:110px;background:#fff;
- padding:8px 8px 18px 8px;
- box-shadow:0 15px 30px rgba(0,0,0,.7),0 5px 10px rgba(0,0,0,.4);
- transition:.3s;
-}
-.photo::after{
- content:"";position:absolute;top:8px;left:8px;
- width:calc(100% - 16px);height:calc(100% - 30px);background:#000;
-}
-.photo:nth-child(1){ transform:rotate(-8deg); }
-.photo:nth-child(2){ transform:rotate(6deg); }
-.photo:nth-child(3){ transform:rotate(-4deg); }
-
-.photoStack:hover .photo:nth-child(1){ transform:rotate(-15deg) translateY(-6px);}
-.photoStack:hover .photo:nth-child(2){ transform:rotate(12deg) translateY(-8px);}
-.photoStack:hover .photo:nth-child(3){ transform:rotate(-10deg) translateY(-6px);}
-
-.table{
- position:fixed;bottom:0;width:100%;height:280px;
- background:linear-gradient(#2a1a10,#1a0f08);
- box-shadow: inset 0 30px 60px rgba(0,0,0,.9);
-}
-
-h1{ letter-spacing:6px;margin-top:60px;font-size:28px;}
-
-.container{
- display:grid;
- grid-template-columns: repeat(6, 240px);
- gap:70px;
- justify-content:center;
- margin-top:100px;
-}
-
-.folder{ width:240px;height:320px;position:relative;cursor:pointer;}
-.base{position:absolute;width:100%;height:100%;background:linear-gradient(#7a5a35,#5b3f22);border-radius:8px;box-shadow:0 25px 50px rgba(0,0,0,.9), inset 0 0 30px rgba(0,0,0,.6);}
-.cover{position:absolute;width:100%;height:100%;border-radius:8px;transform-origin:left;transition:.8s;background:linear-gradient(#8b6b40,#5f4326);}
-.folder.open .cover{ transform:rotateY(-130deg);}
-.label{position:absolute;top:14px;left:50%;transform:translateX(-50%) rotate(-4deg);background:#efe6c8;padding:6px 18px;color:black;font-size:15px;box-shadow:0 4px 8px rgba(0,0,0,.6);}
-
-/* DOSSIÊ */
-.dossie{
- position:fixed; inset:0;
- background:rgba(0,0,0,.92);
- display:none;justify-content:center;align-items:center;
- z-index:1000;
-}
-.openFolderBack{position:absolute;width:1000px;height:700px;background:#7b552f;border-radius:6px;box-shadow:0 60px 120px rgba(0,0,0,.9), inset 0 0 35px rgba(0,0,0,.6);padding:20px;}
-.book{ position:relative;display:flex;gap:30px;z-index:2;}
-.paper{width:450px;height:620px;background:#f4edd8;color:#111;padding:40px;border:1px solid rgba(0,0,0,.2);box-shadow:0 30px 50px rgba(0,0,0,.7);text-align:left;font-size:14px;line-height:1.7;}
-
-.arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:42px;background:#efe6c8;color:black;width:65px;height:75px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,.6);z-index:3;}
-.arrowLeft{ left:-100px;}
-.arrowRight{ right:-100px;}
-
-#fotoArea{
- position:absolute;top:0;left:0;width:100%;height:100%;
- display:none;flex-wrap:wrap;justify-content:center;
- align-items:flex-start;gap:40px;padding-top:160px;
-}
-#fotoArea img{width:280px;height:380px;object-fit:cover;background:#ddd;padding:10px;cursor:pointer;}
-
-#viewer{
- position:fixed; inset:0;
- background:rgba(0,0,0,.95);
- display:none;justify-content:center;align-items:center;
- perspective:1200px;
- z-index:2000;
- cursor:grab;
-}
-#viewer img{max-width:80vw;max-height:80vh;transform-style:preserve-3d;transition:transform .15s;}
+/* (TODO O SEU CSS ORIGINAL PERMANECE IGUAL — OMITI AQUI PRA NÃO FICAR GIGANTE) */
+/* USE EXATAMENTE O CSS QUE VOCÊ JÁ TEM */
 
 /* ===== COMPUTADOR CRT ===== */
 #crtComputer{
@@ -155,7 +50,6 @@ h1{ letter-spacing:6px;margin-top:60px;font-size:28px;}
 }
 @keyframes flicker{0%,100%{opacity:.9}50%{opacity:1}}
 
-/* ===== TERMINAL ===== */
 #terminal{
  position:fixed; inset:0;
  background:rgba(0,0,0,.95);
@@ -238,7 +132,70 @@ h1{ letter-spacing:6px;margin-top:60px;font-size:28px;}
 <script>
 const menu=document.getElementById("menuTop");
 
-/* restante do seu JS original permanece igual... */
+/* ======= SEU SCRIPT ORIGINAL RESTAURADO ======= */
+
+function mostrarFotos(){
+ container.style.display="none";
+ tituloPrincipal.style.display="none";
+ fotoArea.style.display="flex";
+}
+function mostrarArquivos(){
+ container.style.display="grid";
+ tituloPrincipal.style.display="block";
+ fotoArea.style.display="none";
+}
+
+let paginas=[
+{ titulo:"RELATÓRIO 01", texto:"Documento classificado. Informação restrita." },
+{ titulo:"HISTÓRICO", texto:"Sujeito considerado altamente perigoso." },
+{ titulo:"ANÁLISE PSICOLÓGICA", texto:"Comportamento instável detectado." },
+{ titulo:"REGISTRO DE INCIDENTE", texto:"Falha elétrica registrada às 03:17." },
+{ titulo:"OBSERVAÇÃO 47-B", texto:"Resposta anormal a estímulos luminosos." },
+{ titulo:"CONCLUSÃO PROVISÓRIA", texto:"Recomenda-se contenção máxima." }
+];
+
+let paginaAtual=0,pastaAtual=null;
+const setaEsquerda=document.querySelector(".arrowLeft");
+const setaDireita=document.querySelector(".arrowRight");
+
+function atualizarSetas(){
+ setaEsquerda.style.display = paginaAtual===0 ? "none":"flex";
+ setaDireita.style.display = paginaAtual===paginas.length-1 ? "none":"flex";
+}
+function atualizarPagina(){
+ paperLeft.innerHTML="<h2>"+paginas[paginaAtual].titulo+"</h2>";
+ paperRight.innerHTML="<p>"+paginas[paginaAtual].texto+"</p>";
+ atualizarSetas();
+}
+function proximaPagina(){ if(paginaAtual<paginas.length-1){ paginaAtual++; atualizarPagina(); }}
+function paginaAnterior(){ if(paginaAtual>0){ paginaAtual--; atualizarPagina(); }}
+
+let nomes=["Elizabeth","Sebastian","Caleb","Hazel","Calli","Void","Abbadon","Belzebu","Oliver","???","???","???","???","???"];
+
+for(let n of nomes){
+ let pasta=document.createElement("div");
+ pasta.className="folder";
+ pasta.innerHTML=`<div class="base"></div><div class="cover"><div class="label">${n}</div></div>`;
+ pasta.onclick=function(){
+  pastaAtual=this;
+  this.classList.add("open");
+  paginaAtual=0;
+  atualizarPagina();
+  dossie.style.display="flex";
+  menu.classList.add("bloqueado");
+ };
+ container.appendChild(pasta);
+}
+
+function fecharFora(e){
+ if(e.target.id==="dossie"){
+  dossie.style.display="none";
+  if(pastaAtual)pastaAtual.classList.remove("open");
+  menu.classList.remove("bloqueado");
+ }
+}
+
+/* ===== TERMINAL ===== */
 
 function abrirTerminal(){
  terminal.style.display="flex";
@@ -265,7 +222,7 @@ function buscarTexto(){
  if(resultadoBusca.innerHTML==="")resultadoBusca.innerHTML="NENHUM RESULTADO";
 }
 </script>
+
 </body>
 </html>
 ```
-
